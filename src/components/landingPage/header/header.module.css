@@ -1,0 +1,178 @@
+/* Header general */
+.header {
+  height: 8vh;
+  background-color: var(--color-background);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+/* Contenedor principal */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* Menú hamburguesa */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 24px;
+  height: 18px;
+  cursor: pointer;
+  z-index: 20;
+}
+
+.bar {
+  display: block;
+  height: 3px;
+  background: var(--color-text);
+  border-radius: 2px;
+}
+
+/* Menú de navegación */
+.nav {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+
+.nav ul {
+  display: flex;
+  gap: 2rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.nav a {
+  color: var(--color-text);
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.userTag {
+  padding: 4px !important;
+}
+
+/* Menú en móviles */
+@media (max-width: 768px) {
+
+  /* Menú hamburguesa visible solo en móvil */
+  .hamburger {
+    display: flex;
+    position: absolute;
+    right: 0;
+    margin: 1rem;
+  }
+
+  /* Checkbox oculto en pantallas grandes */
+  .menuToggle {
+    display: none;
+  }
+
+  /* Menú de navegación oculto por defecto */
+  .nav {
+    padding-top: 1rem;
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    /* Centra el contenido horizontalmente */
+    width: 100%;
+    background: var(--color-background);
+    position: absolute;
+    top: 100%;
+    /* Colocamos el menú debajo de la barra */
+    left: 0;
+    z-index: 10;
+    text-align: center;
+    padding-bottom: 1rem;
+  }
+
+  /* Mostrar el menú cuando el checkbox esté marcado */
+  .menuToggle:checked+.hamburger+.nav {
+    display: flex;
+  }
+
+  .nav ul {
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+}
+
+/* Asegúrate de ocultar el checkbox para pantallas más grandes */
+@media (min-width: 769px) {
+  .menuToggle {
+    display: none;
+  }
+}
+
+.authButtons {
+  display: flex;
+  gap: 1rem;
+}
+
+.login,
+.logout,
+.register {
+  padding: 0.4rem 1rem;
+  border-radius: 5px;
+  font-weight: 500;
+  text-decoration: none;
+  text-align: center;
+}
+
+.login {
+  color: var(--color-primary);
+  border: 1px solid var(--color-primary);
+}
+
+.logout {
+  color: var(--color-primary);
+  border: 1px solid var(--color-primary);
+  margin-right: 4rem;
+}
+
+.register {
+  background-color: var(--color-primary);
+  color: white !important;
+  border: 1px solid var(--color-primary);
+}
+
+.loggedButtons {
+  color: white;
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  font-weight: 500;
+}
+
+/* Responsive: centrar los botones en móvil */
+@media (max-width: 768px) {
+  .authButtons {
+    width: 50%;
+    margin-bottom: 1rem;
+  }
+
+  .loggedButtons {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-bottom: 1rem;
+  }
+
+  .logout {
+    margin-right: 0px;
+  }
+
+  .login,
+  .logout,
+  .register {
+    width: 100%;
+  }
+}
