@@ -1,7 +1,7 @@
 import { Col, Row } from "antd";
 import { usePathname, useRouter } from "next/navigation";
 import CreateButton from "../registerButton";
-import BackButton from "../backButton";
+import BackButton from "../../serverComponents/backButton";
 import { useMemo } from "react";
 import { useAuth } from "@src/context/auth";
 
