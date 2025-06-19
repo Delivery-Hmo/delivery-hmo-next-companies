@@ -1,8 +1,8 @@
 import { useEffect, useState, useContext, createContext, FC, ReactNode, useCallback } from "react";
 import { User as UserFirebase, onIdTokenChanged } from "firebase/auth";
 import { deleteCookie, getCookies, setCookie } from "cookies-next/client";
-import { useRouter } from "next/navigation";
-import FullLoader from "../../components/fullLoader";
+import { usePathname, useRouter } from "next/navigation";
+import FullLoader from "../../components/clientComponents/fullLoader";
 import { auth } from "../../firebase";
 import { User } from "@src/interfaces/models/user";
 import { get } from "@src/services/http/client";
@@ -29,6 +29,7 @@ const AuthContext = createContext<AuthContextProps>({
 const AuthProvider: FC<Props> = ({ children }) => {
   const message = useMessage();
   const router = useRouter();
+  const pathname = usePathname();
   const [user, setUser] = useState<User | null>(null);
   const [userFirebase, setUserFirebase] = useState<UserFirebase | null>(null);
   const [loading, setLoading] = useState<Boolean>(true);
@@ -38,13 +39,15 @@ const AuthProvider: FC<Props> = ({ children }) => {
 
     if (cookies) Object.keys(cookies).forEach((key) => deleteCookie(key));
 
-    router.push("/");
-    router.refresh();
+    if (!["/", "/registrarse"].includes(pathname)) {
+      router.push("/");
+      router.refresh();
+    }
 
     setUserFirebase(null);
     setUser(null);
     setLoading(false);
-  }, [router]);
+  }, [router, pathname]);
 
   useEffect(() => {
     const uns = onIdTokenChanged(auth, async (_userFirebase) => {
@@ -56,7 +59,7 @@ const AuthProvider: FC<Props> = ({ children }) => {
       }
 
       try {
-        const _user = await get<User>({ baseUrl: "todoConstructionLLCApi", url: `/users/get-by-uid?uid=${_userFirebase.uid}` });
+        const _user = await get<User>({ baseUrl: "companiesApi", url: `/users/get-by-uid?uid=${_userFirebase.uid}` });
         const token = await _userFirebase.getIdToken();
 
         setCookie("token", token);

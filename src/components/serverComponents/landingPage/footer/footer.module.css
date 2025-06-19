@@ -1,26 +1,17 @@
 .footer {
   background-color: #000;
   color: #fff;
-  text-align: center;
   font-size: 0.9rem;
   width: 100%;
-  min-height: 100px;
-}
-
-/* Imagen responsiva */
-.footer img {
-  max-width: 100%;
-  height: auto;
+  height: 7vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 /* Estilos específicos para pantallas pequeñas */
 @media (max-width: 768px) {
   .footer {
     font-size: 0.75rem;
-  }
-
-  .footer img {
-    width: 40px !important;
-    height: 40px !important;
   }
 }

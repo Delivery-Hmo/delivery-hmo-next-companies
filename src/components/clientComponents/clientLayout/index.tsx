@@ -1,15 +1,15 @@
 "use client";
 
-import { ReactNode, useEffect } from "react";
+import { ReactNode } from "react";
 import AuthProvider from "@src/context/auth";
-import ErrorBoundary from "@src/components/errorBoundary";
-import Breadcrumb from "@src/components/breadcrumb";
+import ErrorBoundary from "@src/components/clientComponents/errorBoundary";
+import Breadcrumb from "@src/components/clientComponents/breadcrumb";
 import Error from "@src/app/error";
-import HeaderPage from "@src/components/headerPage";
-import Menu from "@src/components/menu";
+import HeaderPage from "@src/components/clientComponents/headerPage";
+import Menu from "@src/components/clientComponents/menu";
 import { App, Layout } from "antd";
 import { usePathname } from "next/navigation";
-import ReloadPageOnNavigationBrowser from "../reloadPageOnNavigationBrowser";
+import ReloadPageOnNavigationBrowser from "../../clientComponents/reloadPageOnNavigationBrowser";
 
 const ClientLayout = ({ children }: { children: ReactNode; }) => {
   const pathname = usePathname();
@@ -18,7 +18,7 @@ const ClientLayout = ({ children }: { children: ReactNode; }) => {
     <App>
       <ReloadPageOnNavigationBrowser />
       <AuthProvider>
-        <Layout style={{ backgroundColor: "#ECF0F1", height: "100vh" }}>
+        <Layout style={{ backgroundColor: "#ECF0F1", height: "86vh" }}>
           <Menu />
           <div style={{
             display: "block",
