@@ -29,11 +29,9 @@ export default function RootLayout({
               },
               components: {
                 Menu: {
-                  itemColor: "white",
-                  /*       itemHoverColor: "#2563EB",
-                        itemSelectedColor: "#E47C3D",
-                        itemSelectedBg: "#E0F2FE", */
-                  itemBg: "#1F2937",
+                  itemColor: "black",
+                  horizontalItemSelectedColor: "var(--color-secondary)",
+                  fontSize: 16,
                 },
               }
             }}

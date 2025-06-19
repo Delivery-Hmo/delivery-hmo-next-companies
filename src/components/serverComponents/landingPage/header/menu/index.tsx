@@ -1,11 +1,13 @@
 import styles from "./menu.module.css";
 import { Col, Menu, Row } from "antd";
-import { getCookie } from "cookies-next/server";
-import { cookies } from "next/headers";
+import { headers } from "next/headers";
 import items from "./menuItems";
+import Image from "next/image";
+import { logoUrl } from "@src/utils/constants";
 
 const MenuLandingPage = async () => {
-  const pathname = await getCookie("pathname", { cookies }) || "";
+  const headerList = await headers();
+  const pathname = headerList.get("x-current-path") || "/";
 
   return (
     <Row
@@ -14,9 +16,19 @@ const MenuLandingPage = async () => {
       className={styles.row}
     >
       <Col>
-        Aqui poner logo
+        <div
+          className={styles.logoContainer}
+        >
+          <Image
+            src={logoUrl}
+            height={46}
+            width={120}
+            alt="Logo Takhillo"
+            className={styles.logo}
+          />
+        </div>
       </Col>
-      <Col md={6}>
+      <Col md={5}>
         <Menu
           className={styles.menu}
           defaultSelectedKeys={[pathname]}

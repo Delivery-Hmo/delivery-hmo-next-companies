@@ -3,7 +3,8 @@ import { BaseUrl } from "@src/types/services/http";
 
 export const firstPage = "?page=1&limit=10";
 
-export const logoUrl = "https://firebasestorage.googleapis.com/v0/b/connect-4dee9.appspot.com/o/test%2FTODO%20CONSTRUCTION%20LLC%20(1).jpg?alt=media&token=d1f55b21-ea66-4ccc-830c-418cc2f16ae3";
+export const logoUrl = "https://firebasestorage.googleapis.com/v0/b/delivery-hmo.appspot.com/o/logos%2FWhatsApp%20Image%202025-06-18%20at%209.26.42%20PM.jpeg?alt=media&token=b62808ce-c34b-4e45-96f2-4a188ac1033f";
+export const logoUrlTransparent = "https://firebasestorage.googleapis.com/v0/b/delivery-hmo.appspot.com/o/logos%2FWhatsApp_Image_2025-06-18_at_9.29.17_PM-removebg-preview.png?alt=media&token=942863cf-9f51-4211-acd9-852805b1332e";
 export const homeImage = "https://firebasestorage.googleapis.com/v0/b/house-construction-3fca4.firebasestorage.app/o/assets%2Frir-remodeling-on-a-budget.webp?alt=media&token=81d94953-e5d0-446f-96b1-a5c23ff9d069";
 
 export const filterKeys = ["page", "limit", "id", "name", "email", "phone"];
@@ -14,6 +15,12 @@ export const baseUrlsApis: Record<BaseUrl, string> = {
   "companiesApi": "http://localhost:3001",
   "refreshTokenApi": "https://securetoken.googleapis.com/v1"
 } as const;
+
+export const publicRoutes = [
+  "/",
+  "/iniciar-sesion",
+  "/registrarse",
+];
 
 export const superAdminRoutes = [
   "/home",
