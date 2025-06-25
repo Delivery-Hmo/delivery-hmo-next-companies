@@ -1,5 +1,6 @@
 "use client";
 
+import "@ant-design/v5-patch-for-react-19";
 import { CSSProperties, ReactNode, useMemo } from "react";
 import { App, Layout } from "antd";
 import { usePathname } from "next/navigation";

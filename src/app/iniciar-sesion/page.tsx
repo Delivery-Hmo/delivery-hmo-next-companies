@@ -19,6 +19,7 @@ const Login = () => {
               alt="Logo de TakHillo vertical transparente"
               width={170}
               height={150}
+              priority
             />
           </div>
           <h2 className={styles.subtitle}>

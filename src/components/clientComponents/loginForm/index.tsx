@@ -1,39 +1,45 @@
-import { ruleEmail, ruleMaxLength, rulePasswordRequired } from "@src/utils/constants";
-import { Form, Input, Button } from "antd";
+import { Input, Button } from "antd";
 import FormItem from "antd/es/form/FormItem";
 import styles from "./loginForm.module.css";
 import { login } from "./actions";
 
-export const LoginForm = async () => {
+export interface LoginFormValues {
+  email: string;
+  password: string;
+}
+
+export const LoginForm = () => {
   return (
-    <Form
+    <form
       autoComplete="off"
-      onFinish={login}
-      layout="vertical"
+      action={login}
     >
-      <FormItem
-        rules={[ruleEmail, ruleMaxLength]}
+      <FormItem<LoginFormValues>
         label="Correo electrónico"
         colon={false}
         className={styles.emailFormItem}
         name="email"
+        required
       >
         <Input
           type="email"
           placeholder="Ingresa tu correo electrónico"
           name="email"
+          required
         />
       </FormItem>
-      <FormItem
-        rules={[rulePasswordRequired, ruleMaxLength]}
+      <FormItem<LoginFormValues>
         label="Contraseña"
         colon={false}
         name="password"
+        required
+        wrapperCol={{ span: 24 }}
       >
         <Input
-          type="text"
+          type="password"
           placeholder="Ingresa tu contraseña"
           name="password"
+          required
         />
       </FormItem>
       <Button
@@ -43,6 +49,6 @@ export const LoginForm = async () => {
       >
         Continuar
       </Button>
-    </Form>
+    </form >
   );
 };

@@ -47,13 +47,22 @@ export const get = async <T>({ baseUrl, url, abortController }: GetProps) => {
   }
 };
 
-export const post = <T>(props: PostPutPatch) => postPutPatch<T>({ ...props, method: "POST" });
+export const post = async <T>(props: PostPutPatch) => postPutPatch<T>({ ...props, method: "POST" });
 
-export const put = <T>(props: PostPutPatch) => postPutPatch<T>({ ...props, method: "PUT" });
+export const put = async <T>(props: PostPutPatch) => postPutPatch<T>({ ...props, method: "PUT" });
 
-export const patch = <T>(props: PostPutPatch) => postPutPatch<T>({ ...props, method: "PATCH" });
+export const patch = async <T>(props: PostPutPatch) => postPutPatch<T>({ ...props, method: "PATCH" });
 
-export const postPutPatch = async <T>({ baseUrl, url, body, method, abortController, pathToRevalidate, headers }: PostPutPatch) => {
+export const postPutPatch = async <T>(
+  {
+    baseUrl,
+    url,
+    body, method,
+    abortController,
+    pathToRevalidate,
+    headers
+  }: PostPutPatch & { method: "POST" | "PUT" | "PATCH"; }
+) => {
   const token = getCookie("token", { cookies }) as string;
 
   const response = await fetch(

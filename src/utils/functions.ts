@@ -1,3 +1,6 @@
+import { Url } from "@src/types/navigation";
+import { redirect as redirectNext } from "next/navigation";
+
 export const getHeaders = (token: string) => ({
   Accept: "application/json",
   "Content-Type": "application/json",
@@ -32,3 +35,5 @@ export const once = <T extends (...args: any[]) => any>(fn: T): T => {
 
   return wrappedFn as T;
 };
+
+export const redirect = (url: Url) => redirectNext(url);

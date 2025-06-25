@@ -8,14 +8,13 @@ export interface Get<T> {
 
 export interface GetProps {
   baseUrl: BaseUrl;
-  url?: string;
+  url: string;
   abortController?: AbortController;
   searchParams?: Record<string, string>;
 }
 
 export interface PostPutPatch extends GetProps {
-  body: Record<string, unknown>;
-  method?: "POST" | "PUT" | "PATCH";
+  body: unknown;
   pathToRevalidate?: string;
   formUrlencoded?: boolean;
   headers?: Record<string, string>;

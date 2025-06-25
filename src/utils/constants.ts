@@ -8,12 +8,12 @@ export const logoUrlTransparent = "https://firebasestorage.googleapis.com/v0/b/d
 export const homeImage = "https://firebasestorage.googleapis.com/v0/b/house-construction-3fca4.firebasestorage.app/o/assets%2Frir-remodeling-on-a-budget.webp?alt=media&token=81d94953-e5d0-446f-96b1-a5c23ff9d069";
 
 export const filterKeys = ["page", "limit", "id", "name", "email", "phone"];
-
 export const allUrlParamKeys = [...filterKeys, "pathname"] as const;
 
 export const baseUrlsApis: Record<BaseUrl, string> = {
   "companiesApi": "http://localhost:3001",
-  "refreshTokenApi": "https://securetoken.googleapis.com/v1"
+  "refreshTokenApi": "https://securetoken.googleapis.com/v1",
+  "firebaseAuthApi": "https://identitytoolkit.googleapis.com/v1/accounts:"
 } as const;
 
 export const publicRoutes = [
@@ -23,12 +23,7 @@ export const publicRoutes = [
 ];
 
 export const superAdminRoutes = [
-  "/home",
-  "/users",
-  "/schedules",
-  "/services",
-  "/sales-details",
-  "/sales"
+  "/inicio",
 ];
 
 export const ruleName: FormRule = {

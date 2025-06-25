@@ -1,1 +1,1 @@
-export type BaseUrl = "companiesApi" | "refreshTokenApi";
+export type BaseUrl = "companiesApi" | "refreshTokenApi" | "firebaseAuthApi";
