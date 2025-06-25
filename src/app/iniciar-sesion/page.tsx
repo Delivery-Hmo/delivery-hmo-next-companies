@@ -1,11 +1,8 @@
-import React from 'react';
 import styles from "./login.module.css";
-import { logoUrlTransparent, ruleEmail, ruleMaxLength } from "@src/utils/constants";
-import { Button, Card, Input } from "antd";
+import { logoUrlTransparent } from "@src/utils/constants";
+import { Card } from "antd";
 import Image from "next/image";
-import FormItem from "antd/es/form/FormItem";
-
-const PasswordInput = Input.Password;
+import { LoginForm } from "@src/components/clientComponents/loginForm";
 
 const Login = () => {
   return (
@@ -27,39 +24,7 @@ const Login = () => {
           <h2 className={styles.subtitle}>
             Inicia sesión con tu correo y contraseña para continuar
           </h2>
-          <div className={styles.content}>
-            <form>
-              <FormItem
-                rules={[ruleEmail, ruleMaxLength]}
-                label="Correo electrónico"
-                colon={false} // Remove colon for better alignment
-              >
-                <Input
-                  type="email"
-                  placeholder="Ingresa tu correo electrónico"
-                  name="email"
-                />
-              </FormItem>
-              <FormItem
-                rules={[ruleMaxLength]}
-                label="Contraseña"
-                wrapperCol={{ span: 24 }}
-              >
-                <Input
-                  type="text"
-                  placeholder="Ingresa tu contraseña"
-                  name="password"
-                />
-              </FormItem>
-              <Button
-                type="primary"
-                htmlType="submit"
-                className={styles.submitButton}
-              >
-                Continuar
-              </Button>
-            </form>
-          </div>
+          <LoginForm />
         </Card>
       </div>
     </section>

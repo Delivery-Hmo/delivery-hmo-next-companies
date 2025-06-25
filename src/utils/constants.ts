@@ -76,6 +76,11 @@ export const ruleEmail: FormRule = {
   type: "email"
 } as const;
 
+export const rulePasswordRequired: FormRule = {
+  required: true,
+  message: 'La contraseña es requerida.'
+} as const;
+
 export const rulePassword: FormRule = {
   required: true,
   min: 6,
