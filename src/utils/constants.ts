@@ -33,7 +33,7 @@ export const superAdminRoutes = [
 
 export const ruleName: FormRule = {
   required: true,
-  message: "Name is required.",
+  message: 'El nombre es requerido.',
   validator: (rule, value?: string) => {
     return !value?.length ? Promise.reject(rule.message) : Promise.resolve();
   },
@@ -41,13 +41,13 @@ export const ruleName: FormRule = {
 
 export const rulePhone: FormRule = {
   required: true,
-  message: "The phone number must be 10 digits long.",
+  message: 'El número telefónico tiene que ser de 10 dígitos.',
   validator: (rule, value?: string) => value?.length !== 10 ? Promise.reject(rule.message) : Promise.resolve(),
 } as const;
 
 export const rulePrice: FormRule = {
   required: true,
-  message: "The price must be between 0.01 and 999,999.",
+  message: 'El precio no puede ser menor a 0.01 o mayor a 999,999.',
   validator: (rule, value?: string) => {
     if (!value) return Promise.reject(rule.message);
 
@@ -61,23 +61,23 @@ export const rulePrice: FormRule = {
 
 export const ruleMaxLength: FormRule = {
   max: 255,
-  message: "The text cannot exceed 300 characters.",
+  message: "El texto no puede tener más de 300 caracteres.",
   type: "string"
 } as const;
 
 export const ruleLargeMaxLength: FormRule = {
   max: 3000,
-  message: "The text cannot exceed 300 characters."
+  message: "El texto no puede tener más de 300 caracteres."
 } as const;
 
 export const ruleEmail: FormRule = {
   required: true,
-  message: "Please enter a valid email address.",
+  message: 'Favor de escribir un correo electrónico válido.',
   type: "email"
 } as const;
 
 export const rulePassword: FormRule = {
   required: true,
   min: 6,
-  message: "Password must be at least 6 characters long."
+  message: 'La contraseña tiene que ser de 6 dígitos o más.'
 } as const;

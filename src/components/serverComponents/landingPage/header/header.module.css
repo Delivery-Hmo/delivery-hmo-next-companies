@@ -1,5 +1,5 @@
 .header {
   height: 7vh;
-  background-color: var(--color-background-dark);
+  background-color: var(--color-primary);
   font-weight: 700;
 }

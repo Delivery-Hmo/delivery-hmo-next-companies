@@ -15,10 +15,8 @@ const MenuLandingPage = async () => {
       align="middle"
       className={styles.row}
     >
-      <Col>
-        <div
-          className={styles.logoContainer}
-        >
+      <Col xs={16}>
+        <div className={styles.logoContainer}>
           <Image
             src={logoUrl}
             height={46}
@@ -28,7 +26,10 @@ const MenuLandingPage = async () => {
           />
         </div>
       </Col>
-      <Col md={5}>
+      <Col
+        xs={3}
+        md={5}
+      >
         <Menu
           className={styles.menu}
           defaultSelectedKeys={[pathname]}

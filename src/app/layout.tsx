@@ -21,11 +21,11 @@ export default function RootLayout({
             //colores globales
             theme={{
               token: {
-                colorPrimary: "#3498DB",
-                colorSuccess: "#27AE60",
-                colorText: "#1F2937",
-                colorLink: "#2563EB",
-                green: "#27AE60",
+                colorPrimary: "#274C87",
+                colorSuccess: "var(--color-success)",
+                colorText: "var(--color-text)",
+                colorLink: "var(--color-link)",
+                green: "var(--color-success)",
               },
               components: {
                 Menu: {

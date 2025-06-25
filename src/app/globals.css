@@ -22,23 +22,19 @@ body {
     'Segoe UI Symbol',
     'Noto Color Emoji';
 
-  --color-primary: #FDBA11;
-  --color-secondary: #007BBD;
+  --color-primary: #274C87;
+  --color-secondary: #FDBA11;
   --color-accent: #FF4040;
   --color-highlight: #FFD365;
 
   --color-text: #2C2C2C;
+  --color-text-secondary: #5A6268;
   --color-text-light: #FFFFFF;
+  --color-link: #007BBD;
   --color-background: #F5F7FA;
-  --color-background-dark: #274C87;
 
   --color-error: #E74C3C;
   --color-success: #27AE60;
-
-  /*  --link-color: #007BBD;
-  --link-hover: #005F8C;
-  --link-active: #004266;
-  --link-visited: #7A57C2; */
 }
 
 /* Enlaces generales */
