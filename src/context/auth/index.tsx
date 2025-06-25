@@ -7,6 +7,7 @@ import { auth } from "../../firebase";
 import { User } from "@src/interfaces/models/user";
 import { get } from "@src/services/http/client";
 import useMessage from "@src/hooks/useMessage";
+import { publicRoutes } from "@src/utils/constants";
 
 interface Props {
   children: ReactNode;
@@ -39,7 +40,7 @@ const AuthProvider: FC<Props> = ({ children }) => {
 
     if (cookies) Object.keys(cookies).forEach((key) => deleteCookie(key));
 
-    if (!["/", "/registrarse"].includes(pathname)) {
+    if (!publicRoutes.includes(pathname)) {
       router.push("/");
       router.refresh();
     }

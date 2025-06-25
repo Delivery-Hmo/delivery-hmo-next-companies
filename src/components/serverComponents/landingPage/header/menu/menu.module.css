@@ -2,6 +2,16 @@
   height: 100%;
 }
 
+.logoContainer {
+  border-radius: 50px;
+  background-color: white;
+  height: 46px;
+  width: 160px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .menu {
   display: flex;
   align-items: center;

@@ -6,7 +6,7 @@ const Footer = () => {
     <footer className={styles.footer}>
       <Row justify="center" align="middle">
         <Col>
-          <p>Copyright © {new Date().getFullYear()} Delivery HMO - Todos los derechos reservados.</p>
+          <p>Copyright © {new Date().getFullYear()} TakHillo - Todos los derechos reservados.</p>
         </Col>
       </Row>
     </footer>

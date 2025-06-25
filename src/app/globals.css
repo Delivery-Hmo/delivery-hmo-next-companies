@@ -5,30 +5,19 @@ body {
   overflow-x: hidden;
   width: 100% !important;
   background-color: rgb(236, 240, 241);
-  font-family: var(--font-family);
 }
 
 :root {
-  --font-family: -apple-system,
-    BlinkMacSystemFont,
-    'Segoe UI',
-    Roboto,
-    'Helvetica Neue',
-    Arial,
-    'Noto Sans',
-    sans-serif,
-    'Apple Color Emoji',
-    'Segoe UI Emoji',
-    'Segoe UI Symbol',
-    'Noto Color Emoji';
-  --color-primary: #E47C3D;
-  --color-secondary: #896BA0;
-  --color-accent: #FF9648;
+  --color-primary: #274C87;
+  --color-secondary: #FDBA11;
+  --color-accent: #FF4040;
+  --color-highlight: #FFD365;
 
-  --color-text: #3A3A3A;
+  --color-text: #2C2C2C;
+  --color-text-secondary: #5A6268;
   --color-text-light: #FFFFFF;
-  --color-background: #F6F2EF;
-  --color-background-dark: #2C3E50;
+  --color-link: #007BBD;
+  --color-background: #F5F7FA;
 
   --color-error: #E74C3C;
   --color-success: #27AE60;

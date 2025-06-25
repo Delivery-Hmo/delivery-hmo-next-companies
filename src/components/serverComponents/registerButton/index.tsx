@@ -1,3 +1,5 @@
+"use server";
+
 import { FC } from "react";
 import { Button, ButtonProps } from "antd";
 import { PlusCircleOutlined } from "@ant-design/icons";
