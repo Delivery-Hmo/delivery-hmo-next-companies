@@ -1,5 +1,5 @@
 import { useEffect, useContext, createContext, ReactNode, useState, UIEvent, useCallback, Dispatch, SetStateAction } from "react";
-import { InputType } from "../../types/components/dynamicForm";
+import { InputType } from "../../types/components/clientComponents/dynamicForm";
 import { Form, FormInstance, UploadFile } from "antd";
 import useAbortController from "../../hooks/useAbortController";
 import { once } from "../../utils/functions";

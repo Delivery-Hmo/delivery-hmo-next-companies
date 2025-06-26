@@ -36,7 +36,17 @@ export const put = <T>(props: PostPutPatch) => postPutPatch<T>({ ...props, metho
 
 export const patch = <T>(props: PostPutPatch) => postPutPatch<T>({ ...props, method: "PATCH" });
 
-export const postPutPatch = async <T>({ baseUrl, url, body, method, abortController, headers, withOutToken }: PostPutPatch) => {
+export const postPutPatch = async <T>(
+  {
+    baseUrl,
+    url,
+    body,
+    method,
+    abortController,
+    headers,
+    withOutToken
+  }: PostPutPatch & { method: "POST" | "PUT" | "PATCH"; }
+) => {
   const token = withOutToken ? "" : await getCurrentToken();
 
   const response = await fetch(

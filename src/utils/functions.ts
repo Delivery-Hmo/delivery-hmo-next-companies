@@ -1,8 +1,21 @@
-export const getHeaders = (token: string) => ({
-  Accept: "application/json",
-  "Content-Type": "application/json",
-  Authorization: "Bearer " + token
-});
+import { Url } from "@src/types/navigation";
+import { redirect as redirectNext } from "next/navigation";
+
+export const getHeaders = (token: string) => {
+  const headers = {
+    Accept: "application/json",
+    "Content-Type": "application/json"
+  };
+
+  if (!token) {
+    return headers;
+  }
+
+  return {
+    ...headers,
+    Authorization: "Bearer " + token
+  };
+};
 
 export const handleError = (error: any) => {
   console.log(error);
@@ -32,3 +45,5 @@ export const once = <T extends (...args: any[]) => any>(fn: T): T => {
 
   return wrappedFn as T;
 };
+
+export const redirect = (url: Url) => redirectNext(url);

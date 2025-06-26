@@ -1,5 +1,6 @@
 "use client";
 
+import "@ant-design/v5-patch-for-react-19";
 import { CSSProperties, ReactNode, useMemo } from "react";
 import { App, Layout } from "antd";
 import { usePathname } from "next/navigation";
@@ -11,6 +12,7 @@ import HeaderPage from "@src/components/clientComponents/headerPage";
 import Menu from "@src/components/clientComponents/menu";
 import ReloadPageOnNavigationBrowser from "../../clientComponents/reloadPageOnNavigationBrowser";
 import { publicRoutes } from "@src/utils/constants";
+import CheckSearchParamsFromServer from "../checkSearchParamsFromServer";
 
 const ClientLayout = ({ children }: { children: ReactNode; }) => {
   const pathname = usePathname();
@@ -36,6 +38,7 @@ const ClientLayout = ({ children }: { children: ReactNode; }) => {
   return (
     <App>
       <ReloadPageOnNavigationBrowser />
+      <CheckSearchParamsFromServer />
       <AuthProvider>
         <Layout style={{ backgroundColor: "#ECF0F1", height: "86vh" }}>
           <Menu />

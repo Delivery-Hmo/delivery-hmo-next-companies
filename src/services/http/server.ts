@@ -1,11 +1,11 @@
 "use server";
 
-import { baseUrlsApis, filterKeys } from "@src/utils/constants";
 import { getCookie, getCookies } from "cookies-next";
 import { cookies } from "next/headers";
 import { revalidateTag } from "next/cache";
-import { getHeaders, handleError } from "@src/utils/functions";
 import { GetProps, PostPutPatch } from "@src/interfaces/services/http";
+import { getHeaders, handleError } from "@src/utils/serverFunctions";
+import { baseUrlsApis, filterKeys } from "@src/utils/serverConstants";
 
 export const get = async <T>({ baseUrl, url, abortController }: GetProps) => {
   try {
@@ -47,17 +47,27 @@ export const get = async <T>({ baseUrl, url, abortController }: GetProps) => {
   }
 };
 
-export const post = <T>(props: PostPutPatch) => postPutPatch<T>({ ...props, method: "POST" });
+export const post = async <T>(props: PostPutPatch) => postPutPatch<T>({ ...props, method: "POST" });
 
-export const put = <T>(props: PostPutPatch) => postPutPatch<T>({ ...props, method: "PUT" });
+export const put = async <T>(props: PostPutPatch) => postPutPatch<T>({ ...props, method: "PUT" });
 
-export const patch = <T>(props: PostPutPatch) => postPutPatch<T>({ ...props, method: "PATCH" });
+export const patch = async <T>(props: PostPutPatch) => postPutPatch<T>({ ...props, method: "PATCH" });
 
-export const postPutPatch = async <T>({ baseUrl, url, body, method, abortController, pathToRevalidate, headers }: PostPutPatch) => {
-  const token = getCookie("token", { cookies }) as string;
+export const postPutPatch = async <T>(
+  {
+    baseUrl,
+    url,
+    body, method,
+    abortController,
+    pathToRevalidate,
+    headers
+  }: PostPutPatch & { method: "POST" | "PUT" | "PATCH"; }
+) => {
+  const token = await getCookie("token", { cookies }) as string;
+  const completeUrl = `${baseUrlsApis[baseUrl]}${url}`;
 
   const response = await fetch(
-    `${baseUrlsApis[baseUrl]}${url}`,
+    completeUrl,
     {
       method,
       body: JSON.stringify(body),

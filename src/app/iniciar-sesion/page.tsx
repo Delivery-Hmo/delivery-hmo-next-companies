@@ -1,8 +1,8 @@
 import styles from "./login.module.css";
-import { logoUrlTransparent } from "@src/utils/constants";
-import { Card } from "antd";
 import Image from "next/image";
-import { LoginForm } from "@src/components/clientComponents/loginForm";
+import { Card } from "antd";
+import { logoUrlTransparent } from "@src/utils/serverConstants";
+import { LoginForm } from "@src/components/serverComponents/loginForm";
 
 const Login = () => {
   return (
@@ -19,6 +19,7 @@ const Login = () => {
               alt="Logo de TakHillo vertical transparente"
               width={170}
               height={150}
+              priority
             />
           </div>
           <h2 className={styles.subtitle}>
