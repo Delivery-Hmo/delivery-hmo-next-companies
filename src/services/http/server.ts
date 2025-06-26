@@ -1,11 +1,11 @@
 "use server";
 
-import { baseUrlsApis, filterKeys } from "@src/utils/constants";
 import { getCookie, getCookies } from "cookies-next";
 import { cookies } from "next/headers";
 import { revalidateTag } from "next/cache";
-import { getHeaders, handleError } from "@src/utils/functions";
 import { GetProps, PostPutPatch } from "@src/interfaces/services/http";
+import { getHeaders, handleError } from "@src/utils/serverFunctions";
+import { baseUrlsApis, filterKeys } from "@src/utils/serverConstants";
 
 export const get = async <T>({ baseUrl, url, abortController }: GetProps) => {
   try {
@@ -63,10 +63,11 @@ export const postPutPatch = async <T>(
     headers
   }: PostPutPatch & { method: "POST" | "PUT" | "PATCH"; }
 ) => {
-  const token = getCookie("token", { cookies }) as string;
+  const token = await getCookie("token", { cookies }) as string;
+  const completeUrl = `${baseUrlsApis[baseUrl]}${url}`;
 
   const response = await fetch(
-    `${baseUrlsApis[baseUrl]}${url}`,
+    completeUrl,
     {
       method,
       body: JSON.stringify(body),

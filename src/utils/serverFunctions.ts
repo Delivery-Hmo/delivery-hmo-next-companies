@@ -1,8 +1,40 @@
+"use server";
+
 import { User } from "@src/interfaces/models/user";
 import { Url } from "@src/types/navigation";
 import { getCookie } from "cookies-next/server";
 import { cookies } from "next/headers";
 import { redirect as redirectNext } from "next/navigation";
+
+export const getHeaders = (token: string) => {
+  const headers = {
+    Accept: "application/json",
+    "Content-Type": "application/json"
+  };
+
+  if (!token) {
+    return headers;
+  }
+
+  return {
+    ...headers,
+    Authorization: "Bearer " + token
+  };
+};
+
+export const handleError = (error: any) => {
+  console.log(error);
+
+  if (error.message && typeof error.message === "string") {
+    throw new Error(error.message);
+  }
+
+  if (error instanceof Error) {
+    throw new Error(error.message);
+  }
+
+  throw new Error(JSON.stringify(error));
+};
 
 export const parseUser = async (userCookie?: string) => {
   if (!userCookie) return null;

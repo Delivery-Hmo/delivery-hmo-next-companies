@@ -3,7 +3,7 @@ import { Col, Menu, Row } from "antd";
 import { headers } from "next/headers";
 import items from "./menuItems";
 import Image from "next/image";
-import { logoUrl } from "@src/utils/constants";
+import { logoUrl } from "@src/utils/serverConstants";
 
 const MenuLandingPage = async () => {
   const headerList = await headers();

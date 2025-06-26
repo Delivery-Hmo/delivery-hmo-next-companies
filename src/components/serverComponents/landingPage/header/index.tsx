@@ -1,7 +1,6 @@
 import styles from "./header.module.css";
 import MenuLandingPage from "./menu";
-/* import { getUserByCookie } from "@src/utils/serverFunctions";
-import { superAdminRoutes } from "@src/utils/constants"; */
+/* import { getUserByCookie } from "@src/utils/serverFunctions"; */
 
 
 const Header = () => {

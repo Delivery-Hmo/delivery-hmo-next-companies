@@ -2,14 +2,14 @@ import { Dispatch, SetStateAction, UIEvent, useMemo, useState } from "react";
 import { DatePicker, Form, FormInstance, GetProp, Input, InputNumber, Select, Switch, Upload, UploadFile, UploadProps } from "antd";
 import FormItem, { FormItemProps } from "antd/es/form/FormItem";
 import { Rule } from "antd/es/form";
-import { InputType } from "@src/types/components/dynamicForm";
+import { FormControlType } from "@src/types/components/clientComponents/dynamicForm";
 import { ItemSelect } from "@src/interfaces/components/dynamicForm";
 import { ruleMaxLength, rulePassword, rulePrice, ruleEmail, rulePhone, ruleLargeMaxLength } from "@src/utils/constants";
 import ImgCrop from "antd-img-crop";
 import ButtonUpload from "../buttonUpload";
 
 export interface PropsItemFilters<T> {
-  input: InputType<T>;
+  formControl: FormControlType<T>;
   onPopupScroll?: (e: UIEvent<HTMLDivElement, globalThis.UIEvent>, item: ItemSelect<keyof T>) => Promise<void>;
   onSearchSelect?: (search: string) => void;
   form?: FormInstance<T>;
@@ -19,12 +19,12 @@ export interface PropsItemFilters<T> {
 
 type FileType = Parameters<GetProp<UploadProps, "beforeUpload">>[0];
 
-const FormControl = <T extends {}>({ input, onPopupScroll, form, fileListImage, setFileListImage }: PropsItemFilters<T>) => {
+const FormControl = <T extends {}>({ formControl, onPopupScroll, form, fileListImage, setFileListImage }: PropsItemFilters<T>) => {
   const id = Form.useWatch("id", form);
   const password = Form.useWatch("password", form);
   const confirmPassword = Form.useWatch("confirmPassword", form);
   const [searchValues] = useState<{ id: string, value: string; }[]>([]);
-  const { name, type, label, style, placeholder, rules, disabled } = input;
+  const { name, type, label, style, placeholder, rules, disabled } = formControl;
   const nameString = name as string;
 
   const baseFormItemProps: FormItemProps = useMemo(() => ({
@@ -95,8 +95,8 @@ const FormControl = <T extends {}>({ input, onPopupScroll, form, fileListImage, 
             }}
             onWheel={e => e.preventDefault()}
             disabled={disabled}
-            max={input.max}
-            min={input.min}
+            max={formControl.max}
+            min={formControl.min}
           />
         </FormItem>
       }
@@ -187,10 +187,10 @@ const FormControl = <T extends {}>({ input, onPopupScroll, form, fileListImage, 
         >
           <Select
             style={style}
-            options={input.options}
-            loading={input.loading}
+            options={formControl.options}
+            loading={formControl.loading}
             placeholder={placeholder}
-            onPopupScroll={e => onPopupScroll?.(e, input)}
+            onPopupScroll={e => onPopupScroll?.(e, formControl)}
             filterOption={(input, option) =>
               ((option?.label as string) || "").toLowerCase().includes(input.toLowerCase())
             }
@@ -206,8 +206,8 @@ const FormControl = <T extends {}>({ input, onPopupScroll, form, fileListImage, 
              })} */
             searchValue={searchValues.find(search => search.id === name)?.value || ""}
             disabled={disabled}
-            mode={input.mode}
-            onChange={(e) => input.onChange?.({ value: e, title: input.options?.find(option => option.value === e)?.label?.toString() || "" })}
+            mode={formControl.mode}
+            onChange={(e) => formControl.onChange?.({ value: e, title: formControl.options?.find(option => option.value === e)?.label?.toString() || "" })}
           />
           {/*  <Button
               icon={<SearchOutlined />}
@@ -232,18 +232,18 @@ const FormControl = <T extends {}>({ input, onPopupScroll, form, fileListImage, 
           rules={rules}
         >
           {
-            input.multiple
+            formControl.multiple
               ? <Upload
                 fileList={fileListImage}
                 onChange={(e) => {
                   if (!["image/png", "image/jpeg"].includes(e.file.type || "")) return;
 
                   setFileListImage?.(e.fileList);
-                  input.onChange?.(e);
+                  formControl.onChange?.(e);
                 }}
                 onRemove={(e) => {
                   setFileListImage?.(prev => prev.filter((file) => file.uid !== e.uid));
-                  input.onRemove?.(e);
+                  formControl.onRemove?.(e);
                 }}
                 customRequest={({ onSuccess }) => {
                   setTimeout(() => {
@@ -278,11 +278,11 @@ const FormControl = <T extends {}>({ input, onPopupScroll, form, fileListImage, 
                     if (!["image/png", "image/jpeg"].includes(e.file.type || "")) return;
 
                     setFileListImage?.(e.fileList);
-                    input.onChange?.(e);
+                    formControl.onChange?.(e);
                   }}
                   onRemove={(e) => {
                     setFileListImage?.(prev => prev.filter((file) => file.uid !== e.uid));
-                    input.onRemove?.(e);
+                    formControl.onRemove?.(e);
                   }}
                   customRequest={({ onSuccess }) => {
                     setTimeout(() => {
@@ -310,7 +310,7 @@ const FormControl = <T extends {}>({ input, onPopupScroll, form, fileListImage, 
           rules={rules}
         >
           <DatePicker.RangePicker
-            showTime={input.showTime}
+            showTime={formControl.showTime}
           />
         </FormItem>
       }
@@ -321,8 +321,8 @@ const FormControl = <T extends {}>({ input, onPopupScroll, form, fileListImage, 
         >
           <DatePicker
             style={{ width: "100%" }}
-            showTime={input.showTime}
-            minDate={input.minDate}
+            showTime={formControl.showTime}
+            minDate={formControl.minDate}
           />
         </FormItem>
       }
