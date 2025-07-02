@@ -6,7 +6,7 @@ import { getCookie } from "cookies-next/server";
 import { cookies } from "next/headers";
 import { redirect as redirectNext } from "next/navigation";
 
-export const getHeaders = (token: string) => {
+export const getHeaders = async (token: string) => {
   const headers = {
     Accept: "application/json",
     "Content-Type": "application/json"
@@ -22,7 +22,7 @@ export const getHeaders = (token: string) => {
   };
 };
 
-export const handleError = (error: any) => {
+export const handleError = async (error: any) => {
   console.log(error);
 
   if (error.message && typeof error.message === "string") {
@@ -59,9 +59,7 @@ export const getUserByCookie = async (userCookie?: string) => {
   }
 };
 
-export const redirect = (url: Url) => redirectNext(url);
-
-export const getValuesFormData = <T>(formData: FormData) => {
+export const getValuesFormData = async <T>(formData: FormData) => {
   let values: T = {} as T;
 
   formData.forEach((value, key) => {

@@ -1,7 +1,6 @@
 import { Menu } from "antd";
 import { usePathname, useRouter } from "next/navigation";
 import items from "../items";
-import { auth } from "@src/firebase";
 import { useAuth } from "@src/context/auth";
 
 const MenuContainerItems = () => {
@@ -21,7 +20,7 @@ const MenuContainerItems = () => {
           return {
             onClick: async () => {
               if (item.path === "/cerrar-sesión") {
-                await auth.signOut();
+                //await auth.signOut();
                 await clearSession();
                 return;
               }

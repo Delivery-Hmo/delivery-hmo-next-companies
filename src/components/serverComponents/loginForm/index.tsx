@@ -2,13 +2,16 @@ import { Button } from "antd";
 import styles from "./loginForm.module.css";
 import { login } from "./actions";
 import DynamicForm from "@src/components/serverComponents/dynamicForm";
+import { BaseSCProps } from "@src/interfaces/components";
 
 export interface LoginFormValues {
   email: string;
   password: string;
 }
 
-export const LoginForm = () => {
+export const LoginForm = async ({ searchParams }: BaseSCProps) => {
+  const email = (await searchParams)?.email || "";
+
   return (
     <div>
       <DynamicForm<LoginFormValues>
@@ -20,11 +23,12 @@ export const LoginForm = () => {
             label: "Correo electrónico",
             type: "email",
             required: true,
+            defaultValue: email,
             placeholder: "Ingresa tu correo electrónico",
             formItemProps: {
               colon: false,
               className: styles.emailFormItem
-            },
+            }
           },
           {
             type: "password",

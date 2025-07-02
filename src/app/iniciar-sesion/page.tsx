@@ -1,10 +1,11 @@
 import styles from "./login.module.css";
 import Image from "next/image";
 import { Card } from "antd";
-import { logoUrlTransparent } from "@src/utils/serverConstants";
+import { logoUrlTransparent } from "@src/utils/constants";
 import { LoginForm } from "@src/components/serverComponents/loginForm";
+import { BaseSCProps } from "@src/interfaces/components";
 
-const Login = () => {
+const Login = ({ searchParams }: BaseSCProps) => {
   return (
     <section>
       <div className={styles.container}>
@@ -25,7 +26,7 @@ const Login = () => {
           <h2 className={styles.subtitle}>
             Inicia sesión con tu correo y contraseña para continuar
           </h2>
-          <LoginForm />
+          <LoginForm searchParams={searchParams} />
         </Card>
       </div>
     </section>

@@ -3,6 +3,7 @@ import FormItem, { FormItemProps } from "antd/es/form/FormItem";
 import { NamePath } from "antd/es/form/interface";
 import { FormControlType } from "@src/types/components/clientComponents/dynamicForm";
 import ButtonUpload from "@src/components/clientComponents/buttonUpload";
+import { valueType } from "antd/es/statistic/utils";
 
 export interface PropsItemFilters<T> {
   formControl: FormControlType<T>;
@@ -30,6 +31,7 @@ const FormControl = <T extends {}>({ formControl, fileListImage }: PropsItemFilt
             placeholder={placeholder}
             disabled={disabled}
             required={formControl.required}
+            defaultValue={formControl.defaultValue}
           />
         </FormItem>
       }
@@ -46,6 +48,7 @@ const FormControl = <T extends {}>({ formControl, fileListImage }: PropsItemFilt
             max={formControl.max}
             min={formControl.min}
             required={formControl.required}
+            defaultValue={formControl.defaultValue as valueType}
           />
         </FormItem>
       }
@@ -61,6 +64,7 @@ const FormControl = <T extends {}>({ formControl, fileListImage }: PropsItemFilt
             max={999_999}
             disabled={disabled}
             required={formControl.required}
+            defaultValue={formControl.defaultValue as number | undefined}
           />
         </FormItem>
       }
@@ -76,6 +80,7 @@ const FormControl = <T extends {}>({ formControl, fileListImage }: PropsItemFilt
             placeholder={placeholder}
             disabled={disabled}
             required={formControl.required}
+            defaultValue={formControl.defaultValue}
           />
         </FormItem>
       }
@@ -90,6 +95,7 @@ const FormControl = <T extends {}>({ formControl, fileListImage }: PropsItemFilt
             type="number"
             disabled={disabled}
             required={formControl.required}
+            defaultValue={formControl.defaultValue}
           />
         </FormItem>
       }
@@ -106,6 +112,7 @@ const FormControl = <T extends {}>({ formControl, fileListImage }: PropsItemFilt
             disabled={disabled}
             autoComplete="new-password"
             required={formControl.required}
+            defaultValue={formControl.defaultValue}
           />
         </FormItem>
       }
@@ -120,6 +127,7 @@ const FormControl = <T extends {}>({ formControl, fileListImage }: PropsItemFilt
             placeholder={placeholder}
             disabled={disabled}
             required={formControl.required}
+            defaultValue={formControl.defaultValue}
           />
         </FormItem>
       }
@@ -136,6 +144,7 @@ const FormControl = <T extends {}>({ formControl, fileListImage }: PropsItemFilt
             allowClear={true}
             disabled={disabled}
             mode={formControl.mode}
+            defaultValue={formControl.defaultValue}
           />
         </FormItem>
       }
@@ -144,9 +153,11 @@ const FormControl = <T extends {}>({ formControl, fileListImage }: PropsItemFilt
           {...baseFormItemProps}
           {...formItemProps}
           valuePropName="checked"
+
         >
           <Switch
             disabled={disabled}
+            defaultValue={formControl.defaultValue}
           />
         </FormItem>
       }

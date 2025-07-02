@@ -5,7 +5,7 @@ import { cookies } from "next/headers";
 import { revalidateTag } from "next/cache";
 import { GetProps, PostPutPatch } from "@src/interfaces/services/http";
 import { getHeaders, handleError } from "@src/utils/serverFunctions";
-import { baseUrlsApis, filterKeys } from "@src/utils/serverConstants";
+import { baseUrlsApis, filterKeys } from "@src/utils/constants";
 
 export const get = async <T>({ baseUrl, url, abortController }: GetProps) => {
   try {
@@ -29,7 +29,7 @@ export const get = async <T>({ baseUrl, url, abortController }: GetProps) => {
       `${baseUrlsApis[baseUrl]}${url}`,
       {
         method: "GET",
-        headers: getHeaders(token),
+        headers: await getHeaders(token),
         signal: abortController?.signal
       }
     );
@@ -71,7 +71,7 @@ export const postPutPatch = async <T>(
     {
       method,
       body: JSON.stringify(body),
-      headers: headers || getHeaders(token),
+      headers: headers || await getHeaders(token),
       signal: abortController?.signal
     }
   );
