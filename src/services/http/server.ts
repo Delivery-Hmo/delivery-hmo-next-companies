@@ -57,7 +57,8 @@ export const postPutPatch = async <T>(
   {
     baseUrl,
     url,
-    body, method,
+    body,
+    method,
     abortController,
     pathToRevalidate,
     headers
@@ -66,18 +67,22 @@ export const postPutPatch = async <T>(
   const token = await getCookie("token", { cookies }) as string;
   const completeUrl = `${baseUrlsApis[baseUrl]}${url}`;
 
+
   const response = await fetch(
     completeUrl,
     {
       method,
-      body: JSON.stringify(body),
+      body: body instanceof URLSearchParams ? body : JSON.stringify(body),
       headers: headers || await getHeaders(token),
-      signal: abortController?.signal
+      signal: abortController?.signal,
     }
   );
 
   if (!response.ok) {
+
     const error = await response.json();
+
+    console.log("error", error);
     throw handleError(error);
   }
 

@@ -8,7 +8,7 @@ import { firstPage } from "@src/utils/constants";
 const pathsWithQuery: readonly string[] = ["empresas"];
 
 const Breadcrumb = () => {
-  const { user } = useAuth();
+  const { userFirebase } = useAuth();
   const pathname = usePathname();
 
   const { icon, paths } = useMemo(() => {
@@ -34,7 +34,7 @@ const Breadcrumb = () => {
     };
   }, [pathname]);
 
-  if (!user) return null;
+  if (!userFirebase) return null;
 
   return (
     <Row gutter={10}>

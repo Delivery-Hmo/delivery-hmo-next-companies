@@ -54,21 +54,20 @@ const AuthProvider: FC<Props> = ({ children }) => {
     const init = async () => {
       try {
         const firebaseAuthCookie = getCookie("firebaseAuth");
-        const userCookie = getCookie("user");
 
-        if (!firebaseAuthCookie || !userCookie) {
+        if (!firebaseAuthCookie) {
           clearSession();
           return;
         }
 
         const firebaseAuth = JSON.parse(firebaseAuthCookie as string);
-        const _user = JSON.parse(userCookie as string) as User;
 
-        setUser(_user);
         setUserFirebase(firebaseAuth as UserFirebase);
       } catch (error) {
         console.error("Error al obtener el usuario:", error);
         message.error("Error al obtener el usuario");
+      } finally {
+        setLoading(false);
       }
     };
 

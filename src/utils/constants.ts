@@ -13,7 +13,7 @@ export const allUrlParamKeys = [...filterKeys, "pathname"] as const;
 export const baseUrlsApis: Record<BaseUrl, string> = {
   "companiesApi": "http://localhost:3001",
   "refreshTokenApi": "https://securetoken.googleapis.com/v1",
-  "firebaseAuthApi": "https://identitytoolkit.googleapis.com/v1/accounts:"
+  "firebaseAuthApi": "https://identitytoolkit.googleapis.com/v1/"
 } as const;
 
 export const publicRoutes = [

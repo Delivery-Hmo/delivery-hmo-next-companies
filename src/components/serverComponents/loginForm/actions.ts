@@ -2,29 +2,25 @@
 
 import { getValuesFormData } from "@src/utils/serverFunctions";
 import { LoginFormValues } from ".";
-import { get, post } from "@src/services/http/server";
+import { post } from "@src/services/http/server";
 import { FirebaseAuth, FirebaseAuthError } from "@src/interfaces/services/firebaseAuth";
 import { Url } from "@src/types/navigation";
 import { redirect } from "next/navigation";
-import { cookies } from 'next/headers';
+import { createSession } from "@src/lib/session";
 
 export const login = async (formData: FormData) => {
   const body: LoginFormValues = await getValuesFormData(formData);
   const firebaseKey = process.env.FIREBASE_API_KEY;
-  let redirectPath: Url = "/inicio?reload=true";
+  let redirectPath: Url = "/inicio";
 
   try {
     const firebaseAuth = await post<FirebaseAuth>({
       baseUrl: "firebaseAuthApi",
-      url: `signInWithPassword?key=${firebaseKey}`,
+      url: `accounts:signInWithPassword?key=${firebaseKey}`,
       body: { ...body, returnSecureToken: true },
     });
 
-    console.log(firebaseAuth);
-
-    const cookieStore = await cookies();
-
-    cookieStore.set("firebaseAuth", JSON.stringify(firebaseAuth));
+    await createSession(firebaseAuth);
   } catch (error) {
     console.error("Error al iniciar sesión, error:", error);
 

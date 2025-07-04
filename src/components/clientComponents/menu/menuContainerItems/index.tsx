@@ -20,8 +20,7 @@ const MenuContainerItems = () => {
           return {
             onClick: async () => {
               if (item.path === "/cerrar-sesión") {
-                //await auth.signOut();
-                await clearSession();
+                clearSession();
                 return;
               }
 

@@ -25,4 +25,4 @@ export type FormControlType<T> = (ItemInput<keyof T>
   | ItemPrice<keyof T>
   | ItemImage<keyof T>
   | ItemDateRange<keyof T>
-  | ItemDateTime<keyof T>) & { formItemProps?: FormItemProps<T>; };
+  | ItemDateTime<keyof T>);

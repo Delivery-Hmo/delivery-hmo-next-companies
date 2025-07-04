@@ -14,7 +14,7 @@ const textButtonsCreate: Record<string, string> = {
 } as const;
 
 const HeaderView = () => {
-  const { user } = useAuth();
+  const { userFirebase } = useAuth();
   const pathname = usePathname();
   const router = useRouter();
 
@@ -33,7 +33,7 @@ const HeaderView = () => {
     [inPathWithTable, pathname]
   );
 
-  if (!user) return null;
+  if (!userFirebase) return null;
 
   return (
     <>
