@@ -1,11 +1,9 @@
 import { useEffect, useState, useContext, createContext, FC, ReactNode, useCallback } from "react";
-import { User as UserFirebase, onIdTokenChanged } from "firebase/auth";
-import { deleteCookie, getCookies, setCookie } from "cookies-next/client";
-import { usePathname, useRouter } from "next/navigation";
+import { User as UserFirebase } from "firebase/auth";
+import { deleteCookie, getCookie, getCookies } from "cookies-next/client";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import FullLoader from "../../components/clientComponents/fullLoader";
-import { auth } from "../../firebase";
 import { User } from "@src/interfaces/models/user";
-import { get } from "@src/services/http/client";
 import useMessage from "@src/hooks/useMessage";
 import { publicRoutes } from "@src/utils/constants";
 
@@ -17,25 +15,27 @@ interface AuthContextProps {
   user: User | null;
   userFirebase: UserFirebase | null;
   loading: boolean;
-  clearSession: () => Promise<void>;
+  clearSession: () => void;
 }
 
 const AuthContext = createContext<AuthContextProps>({
   user: null,
   userFirebase: null,
   loading: true,
-  clearSession: () => Promise.resolve(),
+  clearSession: () => { },
 });
 
 const AuthProvider: FC<Props> = ({ children }) => {
   const message = useMessage();
   const router = useRouter();
   const pathname = usePathname();
+  const searchParams = useSearchParams();
+  const reload = searchParams.get("reload");
   const [user, setUser] = useState<User | null>(null);
   const [userFirebase, setUserFirebase] = useState<UserFirebase | null>(null);
   const [loading, setLoading] = useState<Boolean>(true);
 
-  const clearSession = useCallback(async () => {
+  const clearSession = useCallback(() => {
     const cookies = getCookies();
 
     if (cookies) Object.keys(cookies).forEach((key) => deleteCookie(key));
@@ -51,37 +51,28 @@ const AuthProvider: FC<Props> = ({ children }) => {
   }, [router, pathname]);
 
   useEffect(() => {
-    const uns = onIdTokenChanged(auth, async (_userFirebase) => {
-      setUserFirebase(_userFirebase);
-
-      if (!_userFirebase) {
-        clearSession();
-        return;
-      }
-
+    const init = async () => {
       try {
-        const _user = await get<User>({ baseUrl: "companiesApi", url: `/users/get-by-uid?uid=${_userFirebase.uid}` });
-        const token = await _userFirebase.getIdToken();
+        const firebaseAuthCookie = getCookie("firebaseAuth");
 
-        setCookie("token", token);
-        setCookie("uid", _userFirebase.uid);
-        setCookie("refreshToken", _userFirebase.refreshToken);
-        setCookie("user", JSON.stringify(_user));
+        if (!firebaseAuthCookie) {
+          clearSession();
+          return;
+        }
 
-        setUser(_user);
+        const firebaseAuth = JSON.parse(firebaseAuthCookie as string);
+
+        setUserFirebase(firebaseAuth as UserFirebase);
       } catch (error) {
-        clearSession();
-        console.log(error);
-        message.error("Error getting user information.");
+        console.error("Error al obtener el usuario:", error);
+        message.error("Error al obtener el usuario");
       } finally {
         setLoading(false);
       }
-    });
-
-    return () => {
-      uns();
     };
-  }, [router, clearSession, message]);
+
+    init();
+  }, [router, clearSession, message, reload]);
 
   if (loading) return <FullLoader />;
 

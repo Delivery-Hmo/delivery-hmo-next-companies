@@ -9,9 +9,9 @@ const { useBreakpoint } = Grid;
 const MenuComponent = () => {
   const pathname = usePathname();
   const screens = useBreakpoint();
-  const { user } = useAuth();
+  const { userFirebase } = useAuth();
 
-  if (!user || pathname === "/") return null;
+  if (!userFirebase || pathname === "/") return null;
 
   return (
     screens.xs ? <Header /> : <Sider />

@@ -1,12 +1,11 @@
 "use server";
 
 import { User } from "@src/interfaces/models/user";
-import { Url } from "@src/types/navigation";
+import { FirebaseAuth, FirebaseTokenData } from "@src/interfaces/services/firebaseAuth";
 import { getCookie } from "cookies-next/server";
 import { cookies } from "next/headers";
-import { redirect as redirectNext } from "next/navigation";
 
-export const getHeaders = (token: string) => {
+export const getHeaders = async (token: string) => {
   const headers = {
     Accept: "application/json",
     "Content-Type": "application/json"
@@ -22,7 +21,7 @@ export const getHeaders = (token: string) => {
   };
 };
 
-export const handleError = (error: any) => {
+export const handleError = async (error: any) => {
   console.log(error);
 
   if (error.message && typeof error.message === "string") {
@@ -41,9 +40,41 @@ export const parseUser = async (userCookie?: string) => {
 
   try {
     return JSON.parse(userCookie) as User;
-  } catch (_) {
+  } catch (error) {
+    console.log(error);
     return null;
   }
+};
+
+export const parseFirebaseAuth = async (userCookie?: string) => {
+  if (!userCookie) return null;
+
+  try {
+    return JSON.parse(userCookie) as FirebaseAuth;
+  } catch (error) {
+    console.log(error);
+    return null;
+  }
+};
+
+export const parseFirebaseTokenData = async (token?: string) => {
+  try {
+    if (!token) return null;
+
+    const payload = token.split('.')[1];
+    const json = atob(payload.replace(/-/g, '+').replace(/_/g, '/'));
+
+    return JSON.parse(json) as FirebaseTokenData;
+  } catch (error) {
+    console.log(error);
+    return null;
+  }
+};
+
+export const verifyTokenExpired = async (exp: number) => {
+  const nowInSeconds = Math.floor(Date.now() / 1000);
+
+  return exp < nowInSeconds;
 };
 
 export const getUserByCookie = async (userCookie?: string) => {
@@ -59,9 +90,7 @@ export const getUserByCookie = async (userCookie?: string) => {
   }
 };
 
-export const redirect = (url: Url) => redirectNext(url);
-
-export const getValuesFormData = <T>(formData: FormData) => {
+export const getValuesFormData = async <T>(formData: FormData) => {
   let values: T = {} as T;
 
   formData.forEach((value, key) => {

@@ -11,6 +11,7 @@ export interface GetProps {
   url: string;
   abortController?: AbortController;
   searchParams?: Record<string, string>;
+  token?: string;
 }
 
 export interface PostPutPatch extends GetProps {

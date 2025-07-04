@@ -5,7 +5,7 @@ import { cookies } from "next/headers";
 import { revalidateTag } from "next/cache";
 import { GetProps, PostPutPatch } from "@src/interfaces/services/http";
 import { getHeaders, handleError } from "@src/utils/serverFunctions";
-import { baseUrlsApis, filterKeys } from "@src/utils/serverConstants";
+import { baseUrlsApis, filterKeys } from "@src/utils/constants";
 
 export const get = async <T>({ baseUrl, url, abortController }: GetProps) => {
   try {
@@ -29,7 +29,7 @@ export const get = async <T>({ baseUrl, url, abortController }: GetProps) => {
       `${baseUrlsApis[baseUrl]}${url}`,
       {
         method: "GET",
-        headers: getHeaders(token),
+        headers: await getHeaders(token),
         signal: abortController?.signal
       }
     );
@@ -57,7 +57,8 @@ export const postPutPatch = async <T>(
   {
     baseUrl,
     url,
-    body, method,
+    body,
+    method,
     abortController,
     pathToRevalidate,
     headers
@@ -66,18 +67,22 @@ export const postPutPatch = async <T>(
   const token = await getCookie("token", { cookies }) as string;
   const completeUrl = `${baseUrlsApis[baseUrl]}${url}`;
 
+
   const response = await fetch(
     completeUrl,
     {
       method,
-      body: JSON.stringify(body),
-      headers: headers || getHeaders(token),
-      signal: abortController?.signal
+      body: body instanceof URLSearchParams ? body : JSON.stringify(body),
+      headers: headers || await getHeaders(token),
+      signal: abortController?.signal,
     }
   );
 
   if (!response.ok) {
+
     const error = await response.json();
+
+    console.log("error", error);
     throw handleError(error);
   }
 
