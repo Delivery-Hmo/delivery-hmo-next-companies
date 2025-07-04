@@ -6,7 +6,21 @@ body {
   width: 100% !important;
   background-color: rgb(236, 240, 241);
 }
-
+main { /* If you use a <main> tag in your layout.js */
+  margin: 0 !important;
+  padding: 0 !important;
+  width: 100% !important;
+  max-width: none !important;
+  min-height: 100vh; /* Ensure the main content area itself is at least full viewport height */
+  display: flex; /* Makes it a flex container */
+  flex-direction: column; /* Stacks children vertically */
+}
+/* You might also want to apply a box-sizing reset */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
 :root {
   --color-primary: #274C87;
   --color-secondary: #FDBA11;
