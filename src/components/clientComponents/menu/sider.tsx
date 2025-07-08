@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Layout } from "antd";
-import HeaderMenu from "./menuContainerItems/headerMenu";
 import MenuContainerItems from "./menuContainerItems";
+import HeaderMenu from "./menuContainerItems/headerMenu";
 
 const Sider = () => {
   const [collapsed, setCollapsed] = useState(false);
@@ -17,6 +17,7 @@ const Sider = () => {
       />
       <MenuContainerItems />
     </Layout.Sider>
+
   );
 };
 

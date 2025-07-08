@@ -13,105 +13,128 @@ export interface PropsItemFilters<T> {
 const FormControl = <T extends {}>({ formControl, fileListImage }: PropsItemFilters<T>) => {
   const { name, type, label, style, placeholder, disabled } = formControl;
 
-  const baseFormItemProps: FormItemProps<T> = {
-    name: name as NamePath<T>,
-    label,
-  };
-
   return (
     <>
       {
-        (!type || type === "input") && <Input
-          name={name as NamePath}
-          style={style}
-          placeholder={placeholder}
-          disabled={disabled}
-          required={formControl.required}
-          defaultValue={formControl.defaultValue}
-        />
+        (!type || type === "input") && <div>
+          <label>{label}</label>
+          <Input
+            name={name as NamePath}
+            style={style}
+            placeholder={placeholder}
+            disabled={disabled}
+            required={formControl.required}
+            defaultValue={formControl.defaultValue}
+          />
+        </div>
+
       }
       {
-        type === "number" && <InputNumber
-          name={name as NamePath}
-          style={{ width: "100%" }}
-          type="number"
-          disabled={disabled}
-          max={formControl.max}
-          min={formControl.min}
-          required={formControl.required}
-          defaultValue={formControl.defaultValue as valueType}
-        />
+        type === "number" && <div>
+          <label>{label}</label>
+          <InputNumber
+            name={name as NamePath}
+            style={{ width: "100%" }}
+            type="number"
+            disabled={disabled}
+            max={formControl.max}
+            min={formControl.min}
+            required={formControl.required}
+            defaultValue={formControl.defaultValue as valueType}
+          />
+        </div>
       }
       {
-        type === "price" && <InputNumber<number>
-          name={name as NamePath}
-          style={{ width: "100%" }}
-          min={1}
-          max={999_999}
-          disabled={disabled}
-          required={formControl.required}
-          defaultValue={formControl.defaultValue as number | undefined}
-        />
+        type === "price" && <div>
+          <label>{label}</label>
+          <InputNumber<number>
+            name={name as NamePath}
+            style={{ width: "100%" }}
+            min={1}
+            max={999_999}
+            disabled={disabled}
+            required={formControl.required}
+            defaultValue={formControl.defaultValue as number | undefined}
+          />
+        </div>
       }
       {
-        type === "email" && <Input
-          name={name as NamePath}
-          type="email"
-          style={style}
-          placeholder={placeholder}
-          disabled={disabled}
-          required={formControl.required}
-          defaultValue={formControl.defaultValue}
-        />
+        type === "email" && <div>
+          <label>{label}</label>
+          <Input
+            name={name as NamePath}
+            type="email"
+            style={style}
+            placeholder={placeholder}
+            disabled={disabled}
+            required={formControl.required}
+            defaultValue={formControl.defaultValue}
+          />
+        </div>
       }
       {
-        type === "phone" && <Input
-          name={name as NamePath}
-          type="number"
-          disabled={disabled}
-          required={formControl.required}
-          defaultValue={formControl.defaultValue}
-        />
+        type === "phone" && <div>
+          <label>{label}</label>
+          <Input
+            name={name as NamePath}
+            type="number"
+            disabled={disabled}
+            required={formControl.required}
+            defaultValue={formControl.defaultValue}
+          />
+        </div>
       }
       {
-        type === "password" && <Input
-          name={name as NamePath}
-          type="password"
-          style={style}
-          placeholder={placeholder}
-          disabled={disabled}
-          autoComplete="new-password"
-          required={formControl.required}
-          defaultValue={formControl.defaultValue}
-        />
+        type === "password" && <div>
+          <label>{label}</label>
+          <Input
+            name={name as NamePath}
+            type="password"
+            style={style}
+            placeholder={placeholder}
+            disabled={disabled}
+            autoComplete="new-password"
+            required={formControl.required}
+            defaultValue={formControl.defaultValue}
+          />
+        </div>
       }
       {
-        type === "textarea" && <Input.TextArea
-          name={name as NamePath}
-          style={style}
-          placeholder={placeholder}
-          disabled={disabled}
-          required={formControl.required}
-          defaultValue={formControl.defaultValue}
-        />
+        type === "textarea" && <div>
+          <label>{label}</label>
+          <Input.TextArea
+            name={name as NamePath}
+            style={style}
+            placeholder={placeholder}
+            disabled={disabled}
+            required={formControl.required}
+            defaultValue={formControl.defaultValue}
+          />
+        </div>
       }
       {
-        type === "select" && <Select
-          style={style}
-          options={formControl.options}
-          loading={formControl.loading}
-          placeholder={placeholder}
-          allowClear={true}
-          disabled={disabled}
-          mode={formControl.mode}
-          defaultValue={formControl.defaultValue}
-        />
+        type === "select" && <div>
+          <label>{label}</label>
+          <Select
+            style={style}
+            options={formControl.options}
+            loading={formControl.loading}
+            placeholder={placeholder}
+            allowClear={true}
+            disabled={disabled}
+            mode={formControl.mode}
+            defaultValue={formControl.defaultValue}
+          />
+        </div>
       }
       {
-        type === "switch" && <Switch
-          disabled={disabled}
-          defaultValue={formControl.defaultValue}
-        />
+        type === "switch" && <div>
+          <label>{label}</label>
+          <Switch
+            disabled={disabled}
+            defaultValue={formControl.defaultValue}
+          />
+        </div>
       }
       {
         type === "image" && <Upload
@@ -147,4 +170,4 @@ const FormControl = <T extends {}>({ formControl, fileListImage }: PropsItemFilt
   );
 };
 
-export default FormControl;
+export default FormControl;;

@@ -30,7 +30,9 @@ export async function middleware(request: NextRequest) {
       body
     });
 
-    await updateSession(newFirebaseAuth, firebaseAuth);
+    if (!(firebaseAuth instanceof Error)) {
+      await updateSession(newFirebaseAuth as RefreshTokenResponse, firebaseAuth);
+    }
   }
 
   if (!firebaseAuthCookie?.value && !publicRoutes.includes(pathname)) {

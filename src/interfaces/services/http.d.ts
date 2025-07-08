@@ -21,3 +21,8 @@ export interface PostPutPatch extends GetProps {
   headers?: Record<string, string>;
   withOutToken?: boolean;
 }
+
+export interface ResponseError {
+  error?: { message?: string; };
+  message?: string;
+}

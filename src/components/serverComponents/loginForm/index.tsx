@@ -25,6 +25,7 @@ export const LoginForm = async ({ searchParams }: BaseSCProps) => {
             required: true,
             defaultValue: email,
             placeholder: "Ingresa tu correo electrónico",
+            style: { marginBottom: "1rem" }
           },
           {
             type: "password",
@@ -32,6 +33,7 @@ export const LoginForm = async ({ searchParams }: BaseSCProps) => {
             label: "Contraseña",
             placeholder: "Ingresa tu contraseña",
             required: true,
+            style: { marginBottom: "1rem" }
           },
         ]}
       />

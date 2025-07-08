@@ -13,8 +13,9 @@ import Menu from "@src/components/clientComponents/menu";
 import ReloadPageOnNavigationBrowser from "../../clientComponents/reloadPageOnNavigationBrowser";
 import { publicRoutes } from "@src/utils/constants";
 import CheckSearchParamsFromServer from "../checkSearchParamsFromServer";
+import { FirebaseAuth } from "@src/interfaces/services/firebaseAuth";
 
-const ClientLayout = ({ children }: { children: ReactNode; }) => {
+const ClientLayout = ({ children, firebaseAuth }: { children: ReactNode; firebaseAuth: FirebaseAuth | null; }) => {
   const pathname = usePathname();
   const styleContent = useMemo(() => {
     const landingStyle: CSSProperties = {
@@ -40,7 +41,12 @@ const ClientLayout = ({ children }: { children: ReactNode; }) => {
       <ReloadPageOnNavigationBrowser />
       <CheckSearchParamsFromServer />
       <AuthProvider>
-        <Layout style={{ backgroundColor: "#ECF0F1", height: "86vh" }}>
+        <Layout
+          style={{
+            backgroundColor: "#ECF0F1",
+            height: firebaseAuth ? "93vh" : "86vh"
+          }}
+        >
           <Menu />
           <Breadcrumb />
           <HeaderPage />
