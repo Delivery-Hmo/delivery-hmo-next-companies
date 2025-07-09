@@ -23,7 +23,7 @@ const DynamicForm = <T extends {}>() => {
                 ?
                 <FormControl
                   key={input.name.toString()}
-                  input={input}
+                  formControl={input}
                   onPopupScroll={onPopupScroll}
                   onSearchSelect={onSearchSelect}
                 />
@@ -31,7 +31,7 @@ const DynamicForm = <T extends {}>() => {
                 <Col xs={24} md={input.md || 12} key={input.name.toString()}>
                   <div style={input.showTag ? { paddingTop: 22 } : undefined}>
                     <FormControl
-                      input={input}
+                      formControl={input}
                       onPopupScroll={onPopupScroll}
                       onSearchSelect={onSearchSelect}
                       fileListImage={fileList}
