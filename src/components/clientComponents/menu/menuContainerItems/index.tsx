@@ -10,8 +10,13 @@ const MenuContainerItems = () => {
 
   return (
     <Menu
-      theme="dark"
-      style={{ marginTop: 10 }}
+      theme="light"
+      style={{
+        paddingTop: 20,
+        paddingBottom: 20,
+        borderRadius: 10,
+        margin: 10
+      }}
       selectedKeys={["/" + pathname.split("/")[1]]}
       items={
         items.map((item) => {

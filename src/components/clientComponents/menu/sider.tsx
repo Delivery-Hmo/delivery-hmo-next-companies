@@ -11,6 +11,10 @@ const Sider = () => {
       collapsible
       collapsed={collapsed}
       onCollapse={setCollapsed}
+      style={{
+        zIndex: 1,
+        height: "100vh",
+      }}
     >
       <HeaderMenu
         collapsed={collapsed}

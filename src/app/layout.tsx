@@ -39,6 +39,11 @@ export default async function RootLayout({
                   horizontalItemSelectedColor: "var(--color-secondary)",
                   fontSize: 16,
                 },
+                Layout: {
+                  triggerHeight: "7vh",
+                  siderBg: "var(--color-primary)",
+                  triggerBg: "var(--color-text-secondary)",
+                },
               }
             }}
           >

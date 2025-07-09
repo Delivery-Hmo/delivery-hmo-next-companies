@@ -48,12 +48,12 @@ const ClientLayout = ({ children, firebaseAuth }: { children: ReactNode; firebas
           }}
         >
           <Menu />
-          <Breadcrumb />
-          <HeaderPage />
           <ErrorBoundary fallback={<Error />}>
             <Layout.Content
               style={styleContent}
             >
+              <Breadcrumb />
+              <HeaderPage />
               {children}
             </Layout.Content>
           </ErrorBoundary>
