@@ -5,7 +5,7 @@ export const firstPage = "?page=1&limit=10";
 
 export const logoUrl = "https://firebasestorage.googleapis.com/v0/b/delivery-hmo.appspot.com/o/logos%2FWhatsApp%20Image%202025-06-18%20at%209.26.42%20PM.jpeg?alt=media&token=b62808ce-c34b-4e45-96f2-4a188ac1033f";
 export const logoUrlTransparent = "https://firebasestorage.googleapis.com/v0/b/delivery-hmo.appspot.com/o/logos%2FWhatsApp_Image_2025-06-18_at_9.29.17_PM-removebg-preview.png?alt=media&token=942863cf-9f51-4211-acd9-852805b1332e";
-export const homeImage = "https://firebasestorage.googleapis.com/v0/b/house-construction-3fca4.firebasestorage.app/o/assets%2Frir-remodeling-on-a-budget.webp?alt=media&token=81d94953-e5d0-446f-96b1-a5c23ff9d069";
+export const homeImage = "https://firebasestorage.googleapis.com/v0/b/delivery-hmo.appspot.com/o/fondo%2F1.jpg?alt=media&token=4cbc4f6c-d6e9-4d11-b7a3-cf18385c1399";
 
 export const filterKeys = ["page", "limit", "id", "name", "email", "phone"];
 export const allUrlParamKeys = [...filterKeys, "pathname"] as const;
