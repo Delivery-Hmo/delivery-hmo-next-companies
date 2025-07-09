@@ -3,35 +3,37 @@
 import React from "react";
 import { Input, Button, Select } from "antd";
 import { EnvironmentOutlined } from "@ant-design/icons";
+import { homeImage } from "@src/utils/constants";
+import styles from "./heroSection.module.css";
+import Image from "next/image";
 
 const { Option } = Select;
 
 const Home = () => {
   return (
     <div>
-      {/* Sección principal con imagen de fondo */}
-      <section
-        style={{
-          position: "relative",
-          backgroundImage: `url('/assets/home/1.jpg')`, 
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-          minHeight: "813px", 
-          width: "100vw", 
-          display: "flex",
-          flexDirection: "column",
-          justifyContent: "center",
-          alignItems: "flex-start", 
-        }}
-      >
-      
+      <section className={styles.section} >
+        <div className={styles.imageWrapper}>
+          <Image
+            src={homeImage}
+            alt="Image maintenance landing page TAKHILLO"
+            priority
+            height={1280}
+            width={1920}
+            style={{
+              objectFit: 'cover',
+              width: '100%',
+              height: '100%',
+            }}
+          />
+        </div>
         <div
           style={{
             position: "relative",
             zIndex: 2,
-            maxWidth: 600, 
-            paddingLeft: "clamp(20px, 5vw, 80px)", 
-            paddingRight: "20px", 
+            maxWidth: 600,
+            paddingLeft: "clamp(20px, 5vw, 80px)",
+            paddingRight: "20px",
             color: 'black',
           }}
         >
@@ -49,7 +51,7 @@ const Home = () => {
                 minWidth: '200px',
                 backgroundColor: 'white',
                 border: '1px solid #d9d9d9',
-                borderRadius: '6px', 
+                borderRadius: '6px',
               }}
             />
 
@@ -60,7 +62,7 @@ const Home = () => {
                 width: 150,
                 backgroundColor: 'white',
                 border: '1px solid #d9d9d9',
-                borderRadius: '6px', 
+                borderRadius: '6px',
                 color: 'black',
               }}
             >
@@ -71,9 +73,9 @@ const Home = () => {
             <Button
               type="primary"
               size="large"
-              style={{ 
-                color: 'white', 
-                borderRadius: '6px', 
+              style={{
+                color: 'white',
+                borderRadius: '6px',
               }}
             >
               Buscar comida
