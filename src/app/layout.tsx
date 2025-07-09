@@ -31,19 +31,19 @@ export default async function RootLayout({
                 colorSuccess: "var(--color-success)",
                 colorText: "var(--color-text)",
                 colorLink: "var(--color-link)",
-                green: "var(--color-success)",
+                green: "var(--color-success)"
               },
               components: {
                 Menu: {
                   itemColor: "black",
                   horizontalItemSelectedColor: "var(--color-secondary)",
-                  fontSize: 16,
+                  fontSize: 16
                 },
                 Layout: {
                   triggerHeight: "7vh",
                   siderBg: "var(--color-primary)",
-                  triggerBg: "var(--color-text-secondary)",
-                },
+                  triggerBg: "var(--color-text-secondary)"
+                }
               }
             }}
           >
