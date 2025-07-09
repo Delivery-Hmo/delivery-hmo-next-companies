@@ -5,11 +5,10 @@ import { useEffect } from "react";
 const CheckSearchParamsFromServer = () => {
   const message = useMessage();
   const searchParams = useSearchParams();
-  const invalidCredentialsParam = searchParams.get("invalidCredentials");
-  const loginFailedParam = searchParams.get("loginFailed");
+  const errorParam = searchParams.get("error");
 
   useEffect(() => {
-    if (invalidCredentialsParam) {
+    if (errorParam === "invalidCredentials") {
       message.error({
         content: "Por favor, verifica tu correo electrónico y/o contraseña.",
         duration: 5,
@@ -18,12 +17,12 @@ const CheckSearchParamsFromServer = () => {
       return;
     }
 
-    if (loginFailedParam) {
+    if (errorParam) {
       message.error({
         content: "Error al iniciar sesión, intentelo de nuevo más tarde."
       });
     }
-  }, [invalidCredentialsParam, loginFailedParam]);
+  }, [errorParam, message]);
 
   return null;
 };

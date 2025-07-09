@@ -22,10 +22,6 @@ export const publicRoutes = [
   "/registrarse",
 ];
 
-export const superAdminRoutes = [
-  "/inicio",
-];
-
 export const ruleName: FormRule = {
   required: true,
   message: 'El nombre es requerido.',

@@ -7,12 +7,18 @@ import Header from "@src/components/serverComponents/landingPage/header";
 import FullLoader from "@src/components/clientComponents/fullLoader";
 import { AntdRegistry } from "@ant-design/nextjs-registry";
 import Footer from "@src/components/serverComponents/landingPage/footer";
+import { getCookie } from "cookies-next/server";
+import { parseFirebaseAuth } from "@src/utils/serverFunctions";
+import { cookies } from 'next/headers';
 
-export default function RootLayout({
+export default async function RootLayout({
   children
 }: {
   children: ReactNode;
 }) {
+  const firebaseAuthCookie = await getCookie("firebaseAuth", { cookies });
+  const firebaseAuth = await parseFirebaseAuth(firebaseAuthCookie);
+
   return (
     <html lang="en">
       <body>
@@ -33,12 +39,17 @@ export default function RootLayout({
                   horizontalItemSelectedColor: "var(--color-secondary)",
                   fontSize: 16,
                 },
+                Layout: {
+                  triggerHeight: "7vh",
+                  siderBg: "var(--color-primary)",
+                  triggerBg: "var(--color-text-secondary)",
+                },
               }
             }}
           >
             <Suspense fallback={<FullLoader />}>
               <Header />
-              <ClientLayout>
+              <ClientLayout firebaseAuth={firebaseAuth}>
                 {children}
               </ClientLayout>
               <Footer />

@@ -21,20 +21,6 @@ export const getHeaders = async (token: string) => {
   };
 };
 
-export const handleError = async (error: any) => {
-  console.log(error);
-
-  if (error.message && typeof error.message === "string") {
-    throw new Error(error.message);
-  }
-
-  if (error instanceof Error) {
-    throw new Error(error.message);
-  }
-
-  throw new Error(JSON.stringify(error));
-};
-
 export const parseUser = async (userCookie?: string) => {
   if (!userCookie) return null;
 
