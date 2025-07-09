@@ -124,6 +124,9 @@ const FormControl = <T extends {}>({ formControl, fileListImage }: PropsItemFilt
             disabled={disabled}
             mode={formControl.mode}
             defaultValue={formControl.defaultValue}
+            styles={{
+              root: { width: "100%" },
+            }}
           />
         </div>
       }
@@ -145,9 +148,7 @@ const FormControl = <T extends {}>({ formControl, fileListImage }: PropsItemFilt
           multiple
           maxCount={5}
         >
-          <ButtonUpload
-            value={fileListImage || []}
-          />
+          <ButtonUpload value={fileListImage || []} />
         </Upload>
       }
       {
