@@ -1,15 +1,15 @@
 import { useEffect, useContext, createContext, ReactNode, useState, UIEvent, useCallback, Dispatch, SetStateAction } from "react";
-import { InputType } from "../../types/components/clientComponents/dynamicForm";
 import { Form, FormInstance, UploadFile } from "antd";
 import useAbortController from "../../hooks/useAbortController";
 import { once } from "../../utils/functions";
 import { ItemSelect } from "@src/interfaces/components/dynamicForm";
 import { usePathname } from "next/navigation";
 import useMessage from "@src/hooks/useMessage";
+import { FormControlType } from "@src/types/components/clientComponents/dynamicForm";
 
 interface Props<T> {
   children: ReactNode;
-  inputsProp?: InputType<T>[];
+  inputsProp?: FormControlType<T>[];
   isFiltersTable?: boolean;
   url?: string;
   withOutToken?: boolean;
@@ -21,7 +21,7 @@ interface Props<T> {
 type OnPopupScrollFun<T> = (e: UIEvent<HTMLDivElement, globalThis.UIEvent>, item: ItemSelect<keyof T>) => Promise<void>;
 
 interface Context<T> {
-  inputs: InputType<T>[];
+  inputs: FormControlType<T>[];
   onPopupScroll: OnPopupScrollFun<T>;
   onSearchSelect: (search: string) => void;
   form: FormInstance<T>;
@@ -54,7 +54,7 @@ const DynamicFormProvider = <T extends { id?: number; }>({ children, inputsProp,
   const pathname = usePathname();
   const Context = createStateContext<T>();
   const abortController = useAbortController();
-  const [inputs, setInputs] = useState<InputType<T>[]>([]);
+  const [inputs, setInputs] = useState<FormControlType<T>[]>([]);
   const [notLoadMore, setNotLoadMore] = useState(false);
   const [filtersTabledLoaded, setFiltersTabledLoaded] = useState(false);
   const [open, setOpen] = useState(openProp || false);
