@@ -18,13 +18,10 @@ const Home = () => {
             src={homeImage}
             alt="Image maintenance landing page TAKHILLO"
             priority
-            height={1280}
-            width={1920}
-            style={{
-              objectFit: 'cover',
-              width: '100%',
-              height: '100%',
-            }}
+            width="0"
+            height="0"
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+            style={{ width: '100%', height: '100%', objectFit: "cover" }}
           />
         </div>
         <div
