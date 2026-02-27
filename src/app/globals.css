@@ -1,35 +1,20 @@
 html,
 body {
-  height: 100%;
-  margin: 0px;
-  overflow-x: hidden;
+  height: 100vh !important;
   width: 100% !important;
+  margin: 0px;
+  overflow: hidden;
   background-color: rgb(236, 240, 241);
 }
 
 main {
-  /* If you use a <main> tag in your layout.js */
   margin: 0 !important;
   padding: 0 !important;
   width: 100% !important;
   max-width: none !important;
   min-height: 100vh;
-  /* Ensure the main content area itself is at least full viewport height */
   display: flex;
-  /* Makes it a flex container */
   flex-direction: column;
-  /* Stacks children vertically */
-}
-
-option:hover {
-  cursor: pointer !important;
-}
-
-/* You might also want to apply a box-sizing reset */
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
 }
 
 :root {

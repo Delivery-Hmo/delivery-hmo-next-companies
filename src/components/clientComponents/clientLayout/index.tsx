@@ -35,15 +35,18 @@ const ClientLayout = ({ children, firebaseAuth }: { children: ReactNode; firebas
       <CheckSearchParamsFromServer />
       <AuthProvider>
         <Layout
-          style={{
-            backgroundColor: "#ECF0F1",
-            height: firebaseAuth ? "93vh" : "86vh"
-          }}
+          style={{ backgroundColor: "#ECF0F1" }}
         >
           <Menu />
           <ErrorBoundary fallback={<Error />}>
             <Layout.Content
-              style={styleContent}
+              style={{
+                ...styleContent,
+                height: firebaseAuth ? "93vh" : "86vh",
+                overflowY: "auto",
+                display: "flex",
+                flexDirection: "column",
+              }}
             >
               <Breadcrumb />
               <HeaderPage />

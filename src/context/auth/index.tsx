@@ -1,15 +1,11 @@
-import { useEffect, useState, useContext, createContext, FC, ReactNode, useCallback } from "react";
+import { useEffect, useState, useContext, createContext, useCallback, PropsWithChildren } from "react";
 import { User as UserFirebase } from "firebase/auth";
 import { deleteCookie, getCookie, getCookies } from "cookies-next/client";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
-import FullLoader from "../../components/clientComponents/fullLoader";
 import { User } from "@src/interfaces/models/user";
 import useMessage from "@src/hooks/useMessage";
 import { publicRoutes } from "@src/utils/constants";
-
-interface Props {
-  children: ReactNode;
-}
+import FullLoader from "@src/components/clientComponents/fullLoader";
 
 interface AuthContextProps {
   user: User | null;
@@ -25,15 +21,16 @@ const AuthContext = createContext<AuthContextProps>({
   clearSession: () => { },
 });
 
-const AuthProvider: FC<Props> = ({ children }) => {
+const AuthProvider = ({ children }: PropsWithChildren) => {
   const message = useMessage();
   const router = useRouter();
   const pathname = usePathname();
   const searchParams = useSearchParams();
   const reload = searchParams.get("reload");
+
   const [user, setUser] = useState<User | null>(null);
   const [userFirebase, setUserFirebase] = useState<UserFirebase | null>(null);
-  const [loading, setLoading] = useState<Boolean>(true);
+  const [loading, setLoading] = useState(true);
 
   const clearSession = useCallback(() => {
     const cookies = getCookies();
@@ -60,7 +57,7 @@ const AuthProvider: FC<Props> = ({ children }) => {
           return;
         }
 
-        const firebaseAuth = JSON.parse(firebaseAuthCookie as string);
+        const firebaseAuth = JSON.parse(firebaseAuthCookie);
 
         setUserFirebase(firebaseAuth as UserFirebase);
       } catch (error) {
@@ -76,7 +73,7 @@ const AuthProvider: FC<Props> = ({ children }) => {
 
   if (loading) return <FullLoader />;
 
-  return <AuthContext.Provider value={{ user, userFirebase, loading, clearSession }}>{children}</AuthContext.Provider>;
+  return <AuthContext value={{ user, userFirebase, loading, clearSession }}>{children}</AuthContext>;
 };
 
 export default AuthProvider;
