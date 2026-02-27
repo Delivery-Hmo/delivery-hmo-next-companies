@@ -8,7 +8,7 @@ const FullLoader = () => {
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
-    height: "86vh",
+    height: "100vh",
   }}>
     <Spin indicator={antIcon} style={{ color: "#3498DB" }} />
   </div>;

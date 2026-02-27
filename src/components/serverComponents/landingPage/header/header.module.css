@@ -1,5 +1,6 @@
 .header {
-  height: 7vh;
+  min-height: 7vh;
   background-color: var(--color-primary);
   font-weight: 700;
+  align-content: center;
 }

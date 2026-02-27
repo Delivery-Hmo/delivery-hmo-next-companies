@@ -21,12 +21,14 @@ export const LoginForm = async ({ searchParams }: BaseSCProps) => {
       >
         {`
             const form = document.getElementById("loginForm");
+
             form.addEventListener("submit", function(event) {
               const loginButton = document.getElementById("loginButton");
-              if (loginButton) {
-                loginButton.disabled = true;
-                loginButton.textContent = "Iniciando sesión...";
-              }
+            
+              if (!loginButton) return;
+              
+              loginButton.disabled = true;
+              loginButton.textContent = "Iniciando sesión...";
             });
         `}
       </Script>

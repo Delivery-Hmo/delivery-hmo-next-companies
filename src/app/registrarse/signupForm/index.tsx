@@ -1,6 +1,6 @@
 import Script from "next/script";
-import DynamicForm from "../dynamicForm";
-import { LoginFormValues } from "../loginForm";
+import DynamicForm from "../../../components/serverComponents/dynamicForm";
+import { LoginFormValues } from "../../iniciar-sesion/loginForm";
 import { signup } from "./actions";
 import { BaseSCProps } from "@src/interfaces/components";
 import { Button } from "antd";
@@ -18,22 +18,24 @@ const SignupForm = async ({ searchParams }: BaseSCProps) => {
   return (
     <div>
       <Script
-        id="loginFormScript"
+        id="signupFormScript"
         strategy="afterInteractive"
       >
         {`
-            const form = document.getElementById("loginForm");
+            const form = document.getElementById("signupForm");
+            
             form.addEventListener("submit", function(event) {
-              const loginButton = document.getElementById("loginButton");
-              if (loginButton) {
-                loginButton.disabled = true;
-                loginButton.textContent = "Iniciando sesión...";
-              }
+              const signupButton = document.getElementById("signupButton");
+
+              if (!signupButton) return;
+
+              signupButton.disabled = true;
+              signupButton.textContent = "Registrando...";
             });
         `}
       </Script>
       <DynamicForm<SignupFormValues>
-        formId="loginForm"
+        formId="signupForm"
         action={signup}
         formControls={[
           {
@@ -69,26 +71,24 @@ const SignupForm = async ({ searchParams }: BaseSCProps) => {
             style: { marginBottom: "1rem" }
           },
           {
+            type: "radioGroup",
             name: "userType",
-            label: "Tipo de usuario",
-            type: "select",
+            title: "Tipo de usuario",
             options: [
-              { value: "client", label: "Cliente" },
-              { value: "company", label: "Empresa" },
-              { value: "deliveryMan", label: "Repartidor" }
-            ],
-            style: { marginBottom: "1rem" }
+              { label: "Cliente", value: "client" },
+              { label: "Empresa", value: "company" }
+            ]
           }
         ]}
       />
       <Button
-        id="loginButton"
+        id="signupButton"
         type="primary"
         htmlType="submit"
         className={styles.submitButton}
-        form="loginForm"
+        form="signupForm"
       >
-        Continuar
+        Registrarse
       </Button>
     </div>
   );

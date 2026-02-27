@@ -2,7 +2,7 @@ import styles from "../iniciar-sesion/login.module.css";
 import Image from "next/image";
 import { Card } from "antd";
 import { logoUrlTransparent } from "@src/utils/constants";
-import SignupForm from "@src/components/serverComponents/signupForm";
+import SignupForm from "@src/app/registrarse/signupForm";
 import { BaseSCProps } from "@src/interfaces/components";
 
 const Signup = async ({ searchParams }: BaseSCProps) => {

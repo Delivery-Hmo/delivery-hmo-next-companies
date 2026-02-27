@@ -13,7 +13,6 @@ const MenuLandingPage = async () => {
     <Row
       justify="space-around"
       align="middle"
-      className={styles.row}
     >
       <Col xs={16}>
         <div className={styles.logoContainer}>

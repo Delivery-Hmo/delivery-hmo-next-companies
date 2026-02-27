@@ -1,19 +1,5 @@
-import { setCookie } from "cookies-next/client";
 import { auth } from "@src/services/firebase";
 import { User, getAuth, onIdTokenChanged, signInWithEmailAndPassword } from "firebase/auth";
-
-export const signInWithEmail = async (email: string, password: string) => {
-  try {
-    const credentials = await signInWithEmailAndPassword(auth, email, password);
-    const token = await credentials.user.getIdToken();
-
-    setCookie("token", token);
-
-    return { error: null, credentials };
-  } catch (error) {
-    return { error };
-  }
-};
 
 export const getCurrentUser = () => new Promise<User>((resolve, reject) => {
   const uns = onIdTokenChanged(

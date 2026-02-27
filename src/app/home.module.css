@@ -1,0 +1,8 @@
+.imageWrapper {
+  width: 100%;
+  min-height: 86vh;
+}
+
+.section {
+  position: relative;
+}

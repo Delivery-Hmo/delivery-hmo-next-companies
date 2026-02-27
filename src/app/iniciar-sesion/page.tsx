@@ -2,7 +2,7 @@ import styles from "./login.module.css";
 import Image from "next/image";
 import { Card } from "antd";
 import { logoUrlTransparent } from "@src/utils/constants";
-import { LoginForm } from "@src/components/serverComponents/loginForm";
+import { LoginForm } from "@src/app/iniciar-sesion/loginForm";
 import { BaseSCProps } from "@src/interfaces/components";
 
 const Login = ({ searchParams }: BaseSCProps) => {

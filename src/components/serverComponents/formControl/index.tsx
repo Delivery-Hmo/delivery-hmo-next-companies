@@ -1,9 +1,9 @@
-import { DatePicker, Input, InputNumber, Select, Switch, Upload, UploadFile } from "antd";
-import FormItem, { FormItemProps } from "antd/es/form/FormItem";
+import { DatePicker, Input, InputNumber, Radio, Switch, Upload, UploadFile } from "antd";
 import { NamePath } from "antd/es/form/interface";
 import { FormControlType } from "@src/types/components/clientComponents/dynamicForm";
 import ButtonUpload from "@src/components/clientComponents/buttonUpload";
 import { valueType } from "antd/es/statistic/utils";
+import styles from "./formControl.module.css";
 
 export interface PropsItemFilters<T> {
   formControl: FormControlType<T>;
@@ -27,7 +27,6 @@ const FormControl = <T extends {}>({ formControl, fileListImage }: PropsItemFilt
             defaultValue={formControl.defaultValue}
           />
         </div>
-
       }
       {
         type === "number" && <div>
@@ -113,24 +112,6 @@ const FormControl = <T extends {}>({ formControl, fileListImage }: PropsItemFilt
         </div>
       }
       {
-        type === "select" && <div>
-          <label>{label}</label>
-          <Select
-            style={style}
-            options={formControl.options}
-            loading={formControl.loading}
-            placeholder={placeholder}
-            allowClear={true}
-            disabled={disabled}
-            mode={formControl.mode}
-            defaultValue={formControl.defaultValue}
-            styles={{
-              root: { width: "100%" },
-            }}
-          />
-        </div>
-      }
-      {
         type === "switch" && <div>
           <label>{label}</label>
           <Switch
@@ -153,7 +134,7 @@ const FormControl = <T extends {}>({ formControl, fileListImage }: PropsItemFilt
       }
       {
         type === "dataRange" && <DatePicker.RangePicker
-          name={name as NamePath}
+
           showTime={formControl.showTime}
           required={formControl.required}
         />
@@ -167,8 +148,28 @@ const FormControl = <T extends {}>({ formControl, fileListImage }: PropsItemFilt
           required={formControl.required}
         />
       }
+      {
+        type === "radioGroup" && <fieldset
+          className={styles.fieldset}
+        >
+          <legend>{formControl.title}</legend>
+          {
+            formControl.options.map((c) => (
+              <div
+                key={c.value}
+              >
+                <input
+                  type="radio"
+                  {...c}
+                />
+                <label>{c.label}</label>
+              </div>
+            ))
+          }
+        </fieldset>
+      }
     </>
   );
 };
 
-export default FormControl;;
+export default FormControl;

@@ -5,7 +5,7 @@ import { updateSession } from "./lib/session";
 import { post } from "./services/http/server";
 import { RefreshTokenResponse } from "./interfaces/services/firebaseAuth";
 
-export async function middleware(request: NextRequest) {
+export async function proxy(request: NextRequest) {
   const headers = new Headers(request.headers);
   const pathname = request.nextUrl.pathname;
 

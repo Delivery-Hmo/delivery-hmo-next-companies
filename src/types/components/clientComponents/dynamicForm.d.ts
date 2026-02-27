@@ -11,6 +11,7 @@ import {
   ItemImage,
   ItemDateRange,
   ItemDateTime,
+  ItemRadioGroup
 } from "@src/interfaces/components/dynamicForm";
 import { FormItemProps } from "antd/es/form/FormItem";
 
@@ -25,4 +26,5 @@ export type FormControlType<T> = (ItemInput<keyof T>
   | ItemPrice<keyof T>
   | ItemImage<keyof T>
   | ItemDateRange<keyof T>
-  | ItemDateTime<keyof T>);
+  | ItemDateTime<keyof T>)
+  | ItemRadioGroup<keyof T>;

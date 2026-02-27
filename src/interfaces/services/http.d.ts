@@ -1,12 +1,12 @@
 
 import { BaseUrl } from "@src/types/services/http";
 
-export interface Get<T> {
+export interface GetList<T> {
   total: number;
   list: Array<T>;
 }
 
-export interface GetProps {
+export interface BaseHttpProps {
   baseUrl: BaseUrl;
   url: string;
   abortController?: AbortController;
@@ -14,7 +14,7 @@ export interface GetProps {
   token?: string;
 }
 
-export interface PostPutPatch extends GetProps {
+export interface HttpProps extends BaseHttpProps {
   body: unknown;
   pathToRevalidate?: string;
   formUrlencoded?: boolean;
